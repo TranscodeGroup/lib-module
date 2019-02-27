@@ -1,4 +1,12 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+    id "com.github.dcendents.android-maven" version "2.1"
+}
+
+group = "cn.transcodegroup"
+version = "0.0.1"
+archivesBaseName = "lib-module"
+
 
 def isUseAndroidX = project.properties['android.useAndroidX'].toBoolean()
 
