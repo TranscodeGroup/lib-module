@@ -14,6 +14,6 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.TranscodeGroup:lib-module:0.0.2'
+    implementation 'com.github.TranscodeGroup:lib-module:0.1.0'
 }
 ```
