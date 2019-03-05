@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.TranscodeGroup"
-version = "0.0.2"
+version = "0.1.0"
 archivesBaseName = "lib-module"
 
 
@@ -35,6 +35,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:support-fragment:28.0.0"
 
     if (!isUseAndroidX) {
         testImplementation 'junit:junit:4.12'

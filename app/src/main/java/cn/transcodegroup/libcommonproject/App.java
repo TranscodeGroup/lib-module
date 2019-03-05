@@ -1,23 +1,17 @@
 package cn.transcodegroup.libcommonproject;
 
-import android.content.Context;
-import android.util.Log;
-
 import java.util.List;
 
-import cn.transcodegroup.lib.common.ModuleContext;
-import cn.transcodegroup.lib.common.SimpleMultiModuleApplication;
+import cn.transcodegroup.lib.module.Router;
+import cn.transcodegroup.lib.module.ModuleContext;
+import cn.transcodegroup.lib.module.MultiModuleApplication;
 
-public class App extends SimpleMultiModuleApplication {
-    private static final String TAG = "App";
+public class App extends MultiModuleApplication {
+    public static final String TAG = "LibModuleProject";
 
     @Override
     protected void onCreateModule(List<ModuleContext> modules) {
-        modules.add(new ModuleContext(this) {
-            @Override
-            public void onAttachBaseContext(Context base) {
-                Log.d(TAG, "ModuleContext.onAttachBaseContext() called with: base = [" + base + "]");
-            }
-        });
+        Router.getInstance().init(this);
+        modules.add(new SampleModuleContext(this));
     }
 }
