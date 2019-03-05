@@ -1,5 +1,7 @@
 package cn.transcodegroup.libcommonproject;
 
+import android.content.Context;
+
 import java.util.List;
 
 import cn.transcodegroup.lib.module.Router;
@@ -13,5 +15,10 @@ public class App extends MultiModuleApplication {
     protected void onCreateModule(List<ModuleContext> modules) {
         Router.getInstance().init(this);
         modules.add(new SampleModuleContext(this));
+    }
+
+    @Override
+    public void onAttachBaseContext(Context base) {
+
     }
 }

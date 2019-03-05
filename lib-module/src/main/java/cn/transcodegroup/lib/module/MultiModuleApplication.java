@@ -20,10 +20,13 @@ public abstract class MultiModuleApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        onAttachBaseContext(base);
         for (ModuleContext module : mModules) {
             module.onAttachBaseContext(base);
         }
     }
+
+    public abstract void onAttachBaseContext(Context base);
 
     @Override
     public void onCreate() {
