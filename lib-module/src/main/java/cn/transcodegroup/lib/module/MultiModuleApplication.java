@@ -20,13 +20,17 @@ public abstract class MultiModuleApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        onAttachBaseContext(base);
         for (ModuleContext module : mModules) {
             module.onAttachBaseContext(base);
         }
+        onAttachBaseContext(base);
     }
 
-    public abstract void onAttachBaseContext(Context base);
+    /**
+     * 模仿{@link ModuleContext#onAttachBaseContext(Context)}, 而添加的方法, 会在modules的onAttachBaseContext之后执行
+     */
+    public void onAttachBaseContext(Context base) {
+    }
 
     @Override
     public void onCreate() {

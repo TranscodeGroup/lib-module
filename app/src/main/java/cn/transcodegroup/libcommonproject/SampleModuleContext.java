@@ -14,8 +14,8 @@ class SampleModuleContext extends ModuleContext {
     }
 
     @Override
-    public void onAttachBaseContext(Context base) {
-        Log.d(App.TAG, "ModuleContext.onAttachBaseContext() called with: base = [" + base + "]");
+    public void onCreate() {
+        super.onCreate();
         Router.getInstance().registerPath("/activity/main", MainActivity.class);
         Router.getInstance().registerProvider(LanguageProvider.class, new LanguageProvider() {
             @Override

@@ -12,6 +12,7 @@ public abstract class ModuleContext extends ContextWrapper {
         super(application);
     }
 
+    /** @deprecated 使用{@link #onAttachBaseContext(Context)}替代 */
     @Override
     @Deprecated
     protected void attachBaseContext(Context base) {
@@ -19,7 +20,8 @@ public abstract class ModuleContext extends ContextWrapper {
         throw new RuntimeException("不要调用/重写该方法, 请重写onAttachBaseContext");
     }
 
-    public abstract void onAttachBaseContext(Context base);
+    public void onAttachBaseContext(Context base) {
+    }
 
     public void onCreate() {
     }
