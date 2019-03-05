@@ -24,7 +24,7 @@ public class Router {
     private Map<String, Class<? extends Fragment>> fragments = new HashMap<>();
     private Map<String, Class<? extends android.app.Fragment>> appFragments = new HashMap<>();
     /** interface -> instance */
-    private Map<Class<? extends Provider>, Provider> providers = new HashMap<>();
+    private Map<Class<? extends Service>, Service> services = new HashMap<>();
     private Context appContext;
     private OnNavigationLostListener onNavigationLostListener;
 
@@ -87,11 +87,11 @@ public class Router {
         map.put(path, cls);
     }
 
-    public <T extends Provider, P extends T> void registerProvider(Class<T> interfaceClass, P provider) {
-        if (providers.get(interfaceClass) != null) {
-            throw new IllegalStateException("provider已经被注册: " + interfaceClass + "->" + providers.get(interfaceClass));
+    public <T extends Service, P extends T> void registerService(Class<T> serviceInterface, P service) {
+        if (services.get(serviceInterface) != null) {
+            throw new IllegalStateException("service已经被注册: " + serviceInterface + "->" + services.get(serviceInterface));
         }
-        providers.put(interfaceClass, provider);
+        services.put(serviceInterface, service);
     }
 
     public Class<? extends Activity> getActivity(String path) {
@@ -106,8 +106,8 @@ public class Router {
         return appFragments.get(path);
     }
 
-    public <T extends Provider> T getProvider(Class<T> provider) {
-        return (T) providers.get(provider);
+    public <T extends Service> T getService(Class<T> serviceInterface) {
+        return (T) services.get(serviceInterface);
     }
 
     public void setOnNavigationLostListener(OnNavigationLostListener onNavigationLostListener) {
@@ -119,7 +119,7 @@ public class Router {
     }
 
     /** 目前没有需要实现的方法 */
-    public interface Provider {
+    public interface Service {
 
     }
 

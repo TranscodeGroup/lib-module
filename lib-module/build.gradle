@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.TranscodeGroup"
-version = "0.3.0"
+version = lib_module_version
 archivesBaseName = "lib-module"
 
 

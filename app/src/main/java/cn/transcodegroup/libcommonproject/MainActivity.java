@@ -6,14 +6,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import cn.transcodegroup.lib.module.Router;
 import cn.transcodegroup.lib.module.Postcard;
-import cn.transcodegroup.lib.module.provider.LanguageProvider;
+import cn.transcodegroup.lib.module.Router;
+import cn.transcodegroup.lib.module.service.LanguageService;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
-        LanguageProvider languageProvider = Router.getInstance().getProvider(LanguageProvider.class);
+        LanguageService languageProvider = Router.getInstance().getService(LanguageService.class);
         super.attachBaseContext(languageProvider.wrapBaseContextForActivity(newBase));
     }
 
