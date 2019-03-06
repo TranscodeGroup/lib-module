@@ -1,6 +1,8 @@
 package cn.transcodegroup.lib.module.service;
 
-public interface MapService {
+import cn.transcodegroup.lib.module.Router;
+
+public interface MapService extends Router.Service {
     int MAP_TYPE_BAIDU = 1;
     int MAP_TYPE_GOOGLE = 2;
 
