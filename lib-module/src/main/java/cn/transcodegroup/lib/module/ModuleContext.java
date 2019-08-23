@@ -9,11 +9,13 @@ import android.support.annotation.Nullable;
 /** 模块级的{@link android.content.Context}, 用于替代{@link Application} */
 public abstract class ModuleContext extends ContextWrapper {
     @Nullable
-    public static ModuleContext createModule(Class<? extends ModuleContext> moduleClass, Application application) {
-        try {
-            return moduleClass.getConstructor(Application.class).newInstance(application);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static ModuleContext createModule(@Nullable Class<? extends ModuleContext> moduleClass, Application application) {
+        if (moduleClass != null) {
+            try {
+                return moduleClass.getConstructor(Application.class).newInstance(application);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
