@@ -77,7 +77,7 @@ public class Router {
         } else if (Fragment.class.isAssignableFrom(cls)) {
             map = fragments;
         } else if (android.app.Fragment.class.isAssignableFrom(cls)) {
-            map = fragments;
+            map = appFragments;
         } else {
             throw new IllegalArgumentException("不支持的cls类型: " + cls);
         }

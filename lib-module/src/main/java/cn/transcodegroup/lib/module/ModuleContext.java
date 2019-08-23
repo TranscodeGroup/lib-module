@@ -4,9 +4,19 @@ import android.app.Application;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Configuration;
+import android.support.annotation.Nullable;
 
 /** 模块级的{@link android.content.Context}, 用于替代{@link Application} */
 public abstract class ModuleContext extends ContextWrapper {
+    @Nullable
+    public static ModuleContext createModule(Class<? extends ModuleContext> moduleClass, Application application) {
+        try {
+            return moduleClass.getConstructor(Application.class).newInstance(application);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public ModuleContext(Application application) {
         super(application);
