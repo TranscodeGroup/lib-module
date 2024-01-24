@@ -4,14 +4,15 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 
 /**
  * <h2>Manual Router/手动路由/Module Router/模块路由</h2>
@@ -19,6 +20,11 @@ import java.util.Map;
  */
 public class Router {
     private static final String TAG = "MRouter";
+
+    public static Router getInstance() {
+        return RouterLoader.INSTANCE;
+    }
+
     /** path -> class */
     private Map<String, Class<? extends Activity>> activitys = new HashMap<>();
     private Map<String, Class<? extends Fragment>> fragments = new HashMap<>();
@@ -27,10 +33,6 @@ public class Router {
     private Map<Class<? extends Service>, Service> services = new HashMap<>();
     private Context appContext;
     private OnNavigationLostListener onNavigationLostListener;
-
-    public static Router getInstance() {
-        return RouterLoader.INSTANCE;
-    }
 
     public void init(Application application) {
         appContext = application;

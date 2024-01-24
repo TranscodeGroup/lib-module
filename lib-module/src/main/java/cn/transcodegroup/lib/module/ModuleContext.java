@@ -4,7 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Configuration;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 /** 模块级的{@link android.content.Context}, 用于替代{@link Application} */
 public abstract class ModuleContext extends ContextWrapper {

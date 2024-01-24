@@ -3,19 +3,18 @@
 buildscript {
     repositories {
         google()
-        jcenter()
-        
+        mavenCentral()
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:7.4.2'
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
-        
+        mavenCentral()
     }
 }
 
@@ -24,7 +23,7 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 28
-    targetSdkVersion = 28
-    lib_module_version = '0.6.3'
+    compileSdkVersion = 34
+    targetSdkVersion = 34
+    lib_module_version = '0.6.4'
 }

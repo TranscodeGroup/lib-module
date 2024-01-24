@@ -1,19 +1,24 @@
 plugins {
     id 'com.android.library'
-    id "com.github.dcendents.android-maven" version "2.1"
+    id 'maven-publish'
 }
 
 group = "com.github.TranscodeGroup"
 version = lib_module_version
 archivesBaseName = "lib-module"
 
-
-def isUseAndroidX = project.properties['android.useAndroidX'].toBoolean()
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+            }
+        }
+    }
+}
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-
-
+    compileSdk rootProject.compileSdkVersion
 
     defaultConfig {
         minSdkVersion 14
@@ -21,7 +26,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -31,15 +36,19 @@ android {
         }
     }
 
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:support-fragment:28.0.0"
+    implementation 'androidx.fragment:fragment:1.0.0'
 
-    if (!isUseAndroidX) {
-        testImplementation 'junit:junit:4.12'
-        androidTestImplementation 'com.android.support.test:runner:1.0.2'
-        androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    }
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
