@@ -42,11 +42,22 @@ public class Router {
         return new Postcard(path);
     }
 
+    /**
+     * 导航的实现方法, 不建议直接调用, 更建议使用链式调用的风格进行导航
+     * <pre>
+     * Router.getInstance().build("/car-assist/main").navigation(context)
+     * </pre>
+     * @see #build(String)
+     * @see Postcard#navigation(Context)
+     */
     public void navigation(@Nullable Context ctx, Postcard postcard, int requestCode) {
         Context context = ctx != null ? ctx : appContext;
         boolean isActivity = context instanceof Activity;
 
         Intent intent = postcard.getIntent();
+        if (intent == null) {
+            intent = new Intent();
+        }
         Class<? extends Activity> activityClass = getActivity(postcard.getPath());
         if (activityClass == null) {
             if (onNavigationLostListener != null) {

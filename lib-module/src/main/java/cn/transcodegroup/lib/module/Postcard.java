@@ -5,16 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 
 public class Postcard {
     private String path;
-    private Intent intent;
+    private Intent intent = null;
     private Bundle options = null;
 
     public Postcard(String path) {
         this.path = path;
-        this.intent = new Intent();
     }
 
     public Postcard withOptionsCompat(ActivityOptionsCompat optionsCompat) {
@@ -22,7 +22,15 @@ public class Postcard {
         return this;
     }
 
+    public Postcard withIntent(Intent intent) {
+        this.intent = intent;
+        return this;
+    }
+
     public Postcard applyConfig(Config config) {
+        if (intent == null) {
+            intent = new Intent();
+        }
         config.config(intent);
         return this;
     }
@@ -31,10 +39,12 @@ public class Postcard {
         return path;
     }
 
+    @Nullable
     public Intent getIntent() {
         return intent;
     }
 
+    @Nullable
     public Bundle getOptions() {
         return options;
     }
